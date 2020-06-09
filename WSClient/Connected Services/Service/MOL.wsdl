@@ -1,0 +1,1679 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://microline.hr/WebServices" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://microline.hr/WebServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microline.hr/WebServices">
+      <s:element name="itemData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="itemKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="quantity" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="extraInfo" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="termsKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="itemDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="itemDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="itemList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="itemListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="itemListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="itemListFiltered">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tradeMarkKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="itemTypeKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="extraInfo" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="itemListFilteredResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="itemListFilteredResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="itemListAndData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="itemListAndDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="itemListAndDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="arTermsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="arTermsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="arTermsListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="itemTypeList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="itemTypeListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="itemTypeListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="itemSubTypeList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="onlyForItemTypeKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="itemSubTypeListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="itemSubTypeListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="tradeMarkList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="tradeMarkListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tradeMarkListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="priceList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="priceListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="priceListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="priceListForSCEndUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tradeMarkKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="itemTypeKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeTax" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="onlyOnStock" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="priceListForSCEndUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="priceListForSCEndUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="customerStatement">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="customerStatementResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="customerStatementResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="salesInvoices">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="delimitedSysdocids" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="salesInvoicesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="salesInvoicesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="serialNumbersInSalesInvoice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sysdocid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="serialNumbersInSalesInvoiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="serialNumbersInSalesInvoiceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="salesInvoiceSysdocidForNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="salesInvoiceSysdocidForNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="salesInvoiceSysdocidForNumberResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="postTemporarySO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="postTemporarySOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="postTemporarySOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addSO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addSOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="addSOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteSO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pk" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteSOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="deleteSOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deliverSO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pk" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deliverSOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="deliverSOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deletePO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pk" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deletePOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="deletePOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="confirmSO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="confirmSOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="confirmSOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="addItemResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="changeItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="changeItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="changeItemResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="confirmPO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="confirmPOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="confirmPOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addPO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="addPOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="addPOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="locationContent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="locationKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="itemKeyLike" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="locationContentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="locationContentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="racks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="locationKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="racksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="racksResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="salesOrdersLines">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="salesOrdersLinesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="salesOrdersLinesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="availability">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="availabilityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="availabilityResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="purchaseOrdersLines">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="vendorInvoiceNumberLike" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="purchaseOrdersLinesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="purchaseOrdersLinesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="salesOrders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="salesOrdersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="salesOrdersResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="purchaseOrders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="vendorInvoiceNumberLike" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="purchaseOrdersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="purchaseOrdersResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="transaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="transactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="transactionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="soPK">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orderNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="soPKResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="soPKResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="poPK">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orderNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="poPKResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="poPKResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="soData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pk" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="extraData" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="soDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="soDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="findRMA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aspServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cookie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="exactSerialNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="optionalItemKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="findRMAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="findRMAResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="itemDataSoapIn">
+    <wsdl:part name="parameters" element="tns:itemData" />
+  </wsdl:message>
+  <wsdl:message name="itemDataSoapOut">
+    <wsdl:part name="parameters" element="tns:itemDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="itemListSoapIn">
+    <wsdl:part name="parameters" element="tns:itemList" />
+  </wsdl:message>
+  <wsdl:message name="itemListSoapOut">
+    <wsdl:part name="parameters" element="tns:itemListResponse" />
+  </wsdl:message>
+  <wsdl:message name="itemListFilteredSoapIn">
+    <wsdl:part name="parameters" element="tns:itemListFiltered" />
+  </wsdl:message>
+  <wsdl:message name="itemListFilteredSoapOut">
+    <wsdl:part name="parameters" element="tns:itemListFilteredResponse" />
+  </wsdl:message>
+  <wsdl:message name="itemListAndDataSoapIn">
+    <wsdl:part name="parameters" element="tns:itemListAndData" />
+  </wsdl:message>
+  <wsdl:message name="itemListAndDataSoapOut">
+    <wsdl:part name="parameters" element="tns:itemListAndDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="arTermsListSoapIn">
+    <wsdl:part name="parameters" element="tns:arTermsList" />
+  </wsdl:message>
+  <wsdl:message name="arTermsListSoapOut">
+    <wsdl:part name="parameters" element="tns:arTermsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="itemTypeListSoapIn">
+    <wsdl:part name="parameters" element="tns:itemTypeList" />
+  </wsdl:message>
+  <wsdl:message name="itemTypeListSoapOut">
+    <wsdl:part name="parameters" element="tns:itemTypeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="itemSubTypeListSoapIn">
+    <wsdl:part name="parameters" element="tns:itemSubTypeList" />
+  </wsdl:message>
+  <wsdl:message name="itemSubTypeListSoapOut">
+    <wsdl:part name="parameters" element="tns:itemSubTypeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="tradeMarkListSoapIn">
+    <wsdl:part name="parameters" element="tns:tradeMarkList" />
+  </wsdl:message>
+  <wsdl:message name="tradeMarkListSoapOut">
+    <wsdl:part name="parameters" element="tns:tradeMarkListResponse" />
+  </wsdl:message>
+  <wsdl:message name="priceListSoapIn">
+    <wsdl:part name="parameters" element="tns:priceList" />
+  </wsdl:message>
+  <wsdl:message name="priceListSoapOut">
+    <wsdl:part name="parameters" element="tns:priceListResponse" />
+  </wsdl:message>
+  <wsdl:message name="priceListForSCEndUserSoapIn">
+    <wsdl:part name="parameters" element="tns:priceListForSCEndUser" />
+  </wsdl:message>
+  <wsdl:message name="priceListForSCEndUserSoapOut">
+    <wsdl:part name="parameters" element="tns:priceListForSCEndUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="customerStatementSoapIn">
+    <wsdl:part name="parameters" element="tns:customerStatement" />
+  </wsdl:message>
+  <wsdl:message name="customerStatementSoapOut">
+    <wsdl:part name="parameters" element="tns:customerStatementResponse" />
+  </wsdl:message>
+  <wsdl:message name="salesInvoicesSoapIn">
+    <wsdl:part name="parameters" element="tns:salesInvoices" />
+  </wsdl:message>
+  <wsdl:message name="salesInvoicesSoapOut">
+    <wsdl:part name="parameters" element="tns:salesInvoicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="serialNumbersInSalesInvoiceSoapIn">
+    <wsdl:part name="parameters" element="tns:serialNumbersInSalesInvoice" />
+  </wsdl:message>
+  <wsdl:message name="serialNumbersInSalesInvoiceSoapOut">
+    <wsdl:part name="parameters" element="tns:serialNumbersInSalesInvoiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="salesInvoiceSysdocidForNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:salesInvoiceSysdocidForNumber" />
+  </wsdl:message>
+  <wsdl:message name="salesInvoiceSysdocidForNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:salesInvoiceSysdocidForNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="postTemporarySOSoapIn">
+    <wsdl:part name="parameters" element="tns:postTemporarySO" />
+  </wsdl:message>
+  <wsdl:message name="postTemporarySOSoapOut">
+    <wsdl:part name="parameters" element="tns:postTemporarySOResponse" />
+  </wsdl:message>
+  <wsdl:message name="addSOSoapIn">
+    <wsdl:part name="parameters" element="tns:addSO" />
+  </wsdl:message>
+  <wsdl:message name="addSOSoapOut">
+    <wsdl:part name="parameters" element="tns:addSOResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteSOSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteSO" />
+  </wsdl:message>
+  <wsdl:message name="deleteSOSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteSOResponse" />
+  </wsdl:message>
+  <wsdl:message name="deliverSOSoapIn">
+    <wsdl:part name="parameters" element="tns:deliverSO" />
+  </wsdl:message>
+  <wsdl:message name="deliverSOSoapOut">
+    <wsdl:part name="parameters" element="tns:deliverSOResponse" />
+  </wsdl:message>
+  <wsdl:message name="deletePOSoapIn">
+    <wsdl:part name="parameters" element="tns:deletePO" />
+  </wsdl:message>
+  <wsdl:message name="deletePOSoapOut">
+    <wsdl:part name="parameters" element="tns:deletePOResponse" />
+  </wsdl:message>
+  <wsdl:message name="confirmSOSoapIn">
+    <wsdl:part name="parameters" element="tns:confirmSO" />
+  </wsdl:message>
+  <wsdl:message name="confirmSOSoapOut">
+    <wsdl:part name="parameters" element="tns:confirmSOResponse" />
+  </wsdl:message>
+  <wsdl:message name="addItemSoapIn">
+    <wsdl:part name="parameters" element="tns:addItem" />
+  </wsdl:message>
+  <wsdl:message name="addItemSoapOut">
+    <wsdl:part name="parameters" element="tns:addItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="changeItemSoapIn">
+    <wsdl:part name="parameters" element="tns:changeItem" />
+  </wsdl:message>
+  <wsdl:message name="changeItemSoapOut">
+    <wsdl:part name="parameters" element="tns:changeItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="confirmPOSoapIn">
+    <wsdl:part name="parameters" element="tns:confirmPO" />
+  </wsdl:message>
+  <wsdl:message name="confirmPOSoapOut">
+    <wsdl:part name="parameters" element="tns:confirmPOResponse" />
+  </wsdl:message>
+  <wsdl:message name="addPOSoapIn">
+    <wsdl:part name="parameters" element="tns:addPO" />
+  </wsdl:message>
+  <wsdl:message name="addPOSoapOut">
+    <wsdl:part name="parameters" element="tns:addPOResponse" />
+  </wsdl:message>
+  <wsdl:message name="locationContentSoapIn">
+    <wsdl:part name="parameters" element="tns:locationContent" />
+  </wsdl:message>
+  <wsdl:message name="locationContentSoapOut">
+    <wsdl:part name="parameters" element="tns:locationContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="racksSoapIn">
+    <wsdl:part name="parameters" element="tns:racks" />
+  </wsdl:message>
+  <wsdl:message name="racksSoapOut">
+    <wsdl:part name="parameters" element="tns:racksResponse" />
+  </wsdl:message>
+  <wsdl:message name="salesOrdersLinesSoapIn">
+    <wsdl:part name="parameters" element="tns:salesOrdersLines" />
+  </wsdl:message>
+  <wsdl:message name="salesOrdersLinesSoapOut">
+    <wsdl:part name="parameters" element="tns:salesOrdersLinesResponse" />
+  </wsdl:message>
+  <wsdl:message name="availabilitySoapIn">
+    <wsdl:part name="parameters" element="tns:availability" />
+  </wsdl:message>
+  <wsdl:message name="availabilitySoapOut">
+    <wsdl:part name="parameters" element="tns:availabilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="purchaseOrdersLinesSoapIn">
+    <wsdl:part name="parameters" element="tns:purchaseOrdersLines" />
+  </wsdl:message>
+  <wsdl:message name="purchaseOrdersLinesSoapOut">
+    <wsdl:part name="parameters" element="tns:purchaseOrdersLinesResponse" />
+  </wsdl:message>
+  <wsdl:message name="salesOrdersSoapIn">
+    <wsdl:part name="parameters" element="tns:salesOrders" />
+  </wsdl:message>
+  <wsdl:message name="salesOrdersSoapOut">
+    <wsdl:part name="parameters" element="tns:salesOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="purchaseOrdersSoapIn">
+    <wsdl:part name="parameters" element="tns:purchaseOrders" />
+  </wsdl:message>
+  <wsdl:message name="purchaseOrdersSoapOut">
+    <wsdl:part name="parameters" element="tns:purchaseOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="transactionSoapIn">
+    <wsdl:part name="parameters" element="tns:transaction" />
+  </wsdl:message>
+  <wsdl:message name="transactionSoapOut">
+    <wsdl:part name="parameters" element="tns:transactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="soPKSoapIn">
+    <wsdl:part name="parameters" element="tns:soPK" />
+  </wsdl:message>
+  <wsdl:message name="soPKSoapOut">
+    <wsdl:part name="parameters" element="tns:soPKResponse" />
+  </wsdl:message>
+  <wsdl:message name="poPKSoapIn">
+    <wsdl:part name="parameters" element="tns:poPK" />
+  </wsdl:message>
+  <wsdl:message name="poPKSoapOut">
+    <wsdl:part name="parameters" element="tns:poPKResponse" />
+  </wsdl:message>
+  <wsdl:message name="soDataSoapIn">
+    <wsdl:part name="parameters" element="tns:soData" />
+  </wsdl:message>
+  <wsdl:message name="soDataSoapOut">
+    <wsdl:part name="parameters" element="tns:soDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="findRMASoapIn">
+    <wsdl:part name="parameters" element="tns:findRMA" />
+  </wsdl:message>
+  <wsdl:message name="findRMASoapOut">
+    <wsdl:part name="parameters" element="tns:findRMAResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MOLSoap">
+    <wsdl:operation name="itemData">
+      <wsdl:input message="tns:itemDataSoapIn" />
+      <wsdl:output message="tns:itemDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="itemList">
+      <wsdl:input message="tns:itemListSoapIn" />
+      <wsdl:output message="tns:itemListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="itemListFiltered">
+      <wsdl:input message="tns:itemListFilteredSoapIn" />
+      <wsdl:output message="tns:itemListFilteredSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="itemListAndData">
+      <wsdl:input message="tns:itemListAndDataSoapIn" />
+      <wsdl:output message="tns:itemListAndDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="arTermsList">
+      <wsdl:input message="tns:arTermsListSoapIn" />
+      <wsdl:output message="tns:arTermsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="itemTypeList">
+      <wsdl:input message="tns:itemTypeListSoapIn" />
+      <wsdl:output message="tns:itemTypeListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="itemSubTypeList">
+      <wsdl:input message="tns:itemSubTypeListSoapIn" />
+      <wsdl:output message="tns:itemSubTypeListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="tradeMarkList">
+      <wsdl:input message="tns:tradeMarkListSoapIn" />
+      <wsdl:output message="tns:tradeMarkListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="priceList">
+      <wsdl:input message="tns:priceListSoapIn" />
+      <wsdl:output message="tns:priceListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="priceListForSCEndUser">
+      <wsdl:input message="tns:priceListForSCEndUserSoapIn" />
+      <wsdl:output message="tns:priceListForSCEndUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="customerStatement">
+      <wsdl:input message="tns:customerStatementSoapIn" />
+      <wsdl:output message="tns:customerStatementSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="salesInvoices">
+      <wsdl:input message="tns:salesInvoicesSoapIn" />
+      <wsdl:output message="tns:salesInvoicesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="serialNumbersInSalesInvoice">
+      <wsdl:input message="tns:serialNumbersInSalesInvoiceSoapIn" />
+      <wsdl:output message="tns:serialNumbersInSalesInvoiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="salesInvoiceSysdocidForNumber">
+      <wsdl:input message="tns:salesInvoiceSysdocidForNumberSoapIn" />
+      <wsdl:output message="tns:salesInvoiceSysdocidForNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="postTemporarySO">
+      <wsdl:input message="tns:postTemporarySOSoapIn" />
+      <wsdl:output message="tns:postTemporarySOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addSO">
+      <wsdl:input message="tns:addSOSoapIn" />
+      <wsdl:output message="tns:addSOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteSO">
+      <wsdl:input message="tns:deleteSOSoapIn" />
+      <wsdl:output message="tns:deleteSOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deliverSO">
+      <wsdl:input message="tns:deliverSOSoapIn" />
+      <wsdl:output message="tns:deliverSOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deletePO">
+      <wsdl:input message="tns:deletePOSoapIn" />
+      <wsdl:output message="tns:deletePOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="confirmSO">
+      <wsdl:input message="tns:confirmSOSoapIn" />
+      <wsdl:output message="tns:confirmSOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addItem">
+      <wsdl:input message="tns:addItemSoapIn" />
+      <wsdl:output message="tns:addItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="changeItem">
+      <wsdl:input message="tns:changeItemSoapIn" />
+      <wsdl:output message="tns:changeItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="confirmPO">
+      <wsdl:input message="tns:confirmPOSoapIn" />
+      <wsdl:output message="tns:confirmPOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="addPO">
+      <wsdl:input message="tns:addPOSoapIn" />
+      <wsdl:output message="tns:addPOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="locationContent">
+      <wsdl:input message="tns:locationContentSoapIn" />
+      <wsdl:output message="tns:locationContentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="racks">
+      <wsdl:input message="tns:racksSoapIn" />
+      <wsdl:output message="tns:racksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="salesOrdersLines">
+      <wsdl:input message="tns:salesOrdersLinesSoapIn" />
+      <wsdl:output message="tns:salesOrdersLinesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="availability">
+      <wsdl:input message="tns:availabilitySoapIn" />
+      <wsdl:output message="tns:availabilitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="purchaseOrdersLines">
+      <wsdl:input message="tns:purchaseOrdersLinesSoapIn" />
+      <wsdl:output message="tns:purchaseOrdersLinesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="salesOrders">
+      <wsdl:input message="tns:salesOrdersSoapIn" />
+      <wsdl:output message="tns:salesOrdersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="purchaseOrders">
+      <wsdl:input message="tns:purchaseOrdersSoapIn" />
+      <wsdl:output message="tns:purchaseOrdersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="transaction">
+      <wsdl:input message="tns:transactionSoapIn" />
+      <wsdl:output message="tns:transactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="soPK">
+      <wsdl:input message="tns:soPKSoapIn" />
+      <wsdl:output message="tns:soPKSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="poPK">
+      <wsdl:input message="tns:poPKSoapIn" />
+      <wsdl:output message="tns:poPKSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="soData">
+      <wsdl:input message="tns:soDataSoapIn" />
+      <wsdl:output message="tns:soDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="findRMA">
+      <wsdl:input message="tns:findRMASoapIn" />
+      <wsdl:output message="tns:findRMASoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MOLSoap" type="tns:MOLSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="itemData">
+      <soap:operation soapAction="http://microline.hr/WebServices/itemData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="itemList">
+      <soap:operation soapAction="http://microline.hr/WebServices/itemList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="itemListFiltered">
+      <soap:operation soapAction="http://microline.hr/WebServices/itemListFiltered" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="itemListAndData">
+      <soap:operation soapAction="http://microline.hr/WebServices/itemListAndData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="arTermsList">
+      <soap:operation soapAction="http://microline.hr/WebServices/arTermsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="itemTypeList">
+      <soap:operation soapAction="http://microline.hr/WebServices/itemTypeList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="itemSubTypeList">
+      <soap:operation soapAction="http://microline.hr/WebServices/itemSubTypeList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="tradeMarkList">
+      <soap:operation soapAction="http://microline.hr/WebServices/tradeMarkList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="priceList">
+      <soap:operation soapAction="http://microline.hr/WebServices/priceList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="priceListForSCEndUser">
+      <soap:operation soapAction="http://microline.hr/WebServices/priceListForSCEndUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="customerStatement">
+      <soap:operation soapAction="http://microline.hr/WebServices/customerStatement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salesInvoices">
+      <soap:operation soapAction="http://microline.hr/WebServices/salesInvoices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="serialNumbersInSalesInvoice">
+      <soap:operation soapAction="http://microline.hr/WebServices/serialNumbersInSalesInvoice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salesInvoiceSysdocidForNumber">
+      <soap:operation soapAction="http://microline.hr/WebServices/salesInvoiceSysdocidForNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="postTemporarySO">
+      <soap:operation soapAction="http://microline.hr/WebServices/postTemporarySO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addSO">
+      <soap:operation soapAction="http://microline.hr/WebServices/addSO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteSO">
+      <soap:operation soapAction="http://microline.hr/WebServices/deleteSO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deliverSO">
+      <soap:operation soapAction="http://microline.hr/WebServices/deliverSO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePO">
+      <soap:operation soapAction="http://microline.hr/WebServices/deletePO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="confirmSO">
+      <soap:operation soapAction="http://microline.hr/WebServices/confirmSO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addItem">
+      <soap:operation soapAction="http://microline.hr/WebServices/addItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeItem">
+      <soap:operation soapAction="http://microline.hr/WebServices/changeItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="confirmPO">
+      <soap:operation soapAction="http://microline.hr/WebServices/confirmPO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addPO">
+      <soap:operation soapAction="http://microline.hr/WebServices/addPO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="locationContent">
+      <soap:operation soapAction="http://microline.hr/WebServices/locationContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="racks">
+      <soap:operation soapAction="http://microline.hr/WebServices/racks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salesOrdersLines">
+      <soap:operation soapAction="http://microline.hr/WebServices/salesOrdersLines" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="availability">
+      <soap:operation soapAction="http://microline.hr/WebServices/availability" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="purchaseOrdersLines">
+      <soap:operation soapAction="http://microline.hr/WebServices/purchaseOrdersLines" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salesOrders">
+      <soap:operation soapAction="http://microline.hr/WebServices/salesOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="purchaseOrders">
+      <soap:operation soapAction="http://microline.hr/WebServices/purchaseOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transaction">
+      <soap:operation soapAction="http://microline.hr/WebServices/transaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="soPK">
+      <soap:operation soapAction="http://microline.hr/WebServices/soPK" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="poPK">
+      <soap:operation soapAction="http://microline.hr/WebServices/poPK" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="soData">
+      <soap:operation soapAction="http://microline.hr/WebServices/soData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findRMA">
+      <soap:operation soapAction="http://microline.hr/WebServices/findRMA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MOLSoap12" type="tns:MOLSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="itemData">
+      <soap12:operation soapAction="http://microline.hr/WebServices/itemData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="itemList">
+      <soap12:operation soapAction="http://microline.hr/WebServices/itemList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="itemListFiltered">
+      <soap12:operation soapAction="http://microline.hr/WebServices/itemListFiltered" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="itemListAndData">
+      <soap12:operation soapAction="http://microline.hr/WebServices/itemListAndData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="arTermsList">
+      <soap12:operation soapAction="http://microline.hr/WebServices/arTermsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="itemTypeList">
+      <soap12:operation soapAction="http://microline.hr/WebServices/itemTypeList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="itemSubTypeList">
+      <soap12:operation soapAction="http://microline.hr/WebServices/itemSubTypeList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="tradeMarkList">
+      <soap12:operation soapAction="http://microline.hr/WebServices/tradeMarkList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="priceList">
+      <soap12:operation soapAction="http://microline.hr/WebServices/priceList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="priceListForSCEndUser">
+      <soap12:operation soapAction="http://microline.hr/WebServices/priceListForSCEndUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="customerStatement">
+      <soap12:operation soapAction="http://microline.hr/WebServices/customerStatement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salesInvoices">
+      <soap12:operation soapAction="http://microline.hr/WebServices/salesInvoices" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="serialNumbersInSalesInvoice">
+      <soap12:operation soapAction="http://microline.hr/WebServices/serialNumbersInSalesInvoice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salesInvoiceSysdocidForNumber">
+      <soap12:operation soapAction="http://microline.hr/WebServices/salesInvoiceSysdocidForNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="postTemporarySO">
+      <soap12:operation soapAction="http://microline.hr/WebServices/postTemporarySO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addSO">
+      <soap12:operation soapAction="http://microline.hr/WebServices/addSO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteSO">
+      <soap12:operation soapAction="http://microline.hr/WebServices/deleteSO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deliverSO">
+      <soap12:operation soapAction="http://microline.hr/WebServices/deliverSO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePO">
+      <soap12:operation soapAction="http://microline.hr/WebServices/deletePO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="confirmSO">
+      <soap12:operation soapAction="http://microline.hr/WebServices/confirmSO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addItem">
+      <soap12:operation soapAction="http://microline.hr/WebServices/addItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changeItem">
+      <soap12:operation soapAction="http://microline.hr/WebServices/changeItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="confirmPO">
+      <soap12:operation soapAction="http://microline.hr/WebServices/confirmPO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addPO">
+      <soap12:operation soapAction="http://microline.hr/WebServices/addPO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="locationContent">
+      <soap12:operation soapAction="http://microline.hr/WebServices/locationContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="racks">
+      <soap12:operation soapAction="http://microline.hr/WebServices/racks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salesOrdersLines">
+      <soap12:operation soapAction="http://microline.hr/WebServices/salesOrdersLines" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="availability">
+      <soap12:operation soapAction="http://microline.hr/WebServices/availability" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="purchaseOrdersLines">
+      <soap12:operation soapAction="http://microline.hr/WebServices/purchaseOrdersLines" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="salesOrders">
+      <soap12:operation soapAction="http://microline.hr/WebServices/salesOrders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="purchaseOrders">
+      <soap12:operation soapAction="http://microline.hr/WebServices/purchaseOrders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transaction">
+      <soap12:operation soapAction="http://microline.hr/WebServices/transaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="soPK">
+      <soap12:operation soapAction="http://microline.hr/WebServices/soPK" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="poPK">
+      <soap12:operation soapAction="http://microline.hr/WebServices/poPK" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="soData">
+      <soap12:operation soapAction="http://microline.hr/WebServices/soData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findRMA">
+      <soap12:operation soapAction="http://microline.hr/WebServices/findRMA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MOL">
+    <wsdl:port name="MOLSoap" binding="tns:MOLSoap">
+      <soap:address location="http://www.microline.hr/WebServices/MOL.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MOLSoap12" binding="tns:MOLSoap12">
+      <soap12:address location="http://www.microline.hr/WebServices/MOL.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

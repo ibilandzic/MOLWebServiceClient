@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.1145
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSClient", "WSClient\WSClient.csproj", "{6FE6D79F-6C44-44DB-8B00-31A8E71DDA5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlModels", "XmlModels\XmlModels.csproj", "{CE8909C0-2F96-4B03-BBA9-083ECAB988C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{3DF3E7AB-6A36-4F47-B81D-9EAA95555498}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{6FE6D79F-6C44-44DB-8B00-31A8E71DDA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FE6D79F-6C44-44DB-8B00-31A8E71DDA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FE6D79F-6C44-44DB-8B00-31A8E71DDA5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE8909C0-2F96-4B03-BBA9-083ECAB988C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE8909C0-2F96-4B03-BBA9-083ECAB988C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE8909C0-2F96-4B03-BBA9-083ECAB988C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE8909C0-2F96-4B03-BBA9-083ECAB988C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DF3E7AB-6A36-4F47-B81D-9EAA95555498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DF3E7AB-6A36-4F47-B81D-9EAA95555498}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DF3E7AB-6A36-4F47-B81D-9EAA95555498}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DF3E7AB-6A36-4F47-B81D-9EAA95555498}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Item.cs" />
+    <Compile Include="SO.cs" />
     <Compile Include="XMLModelFoundation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

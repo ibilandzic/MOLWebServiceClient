@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microline.WS.Core
+namespace Microline.WS.Core.Exceptions
 {
     public class StringNotSetException : Exception
     {

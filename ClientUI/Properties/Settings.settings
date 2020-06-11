@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Microline.WS.Client.UI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AspKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">micpg</Value>
+    </Setting>
+    <Setting Name="CustomerKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">kupac</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">bestpc</Value>
+    </Setting>
+    <Setting Name="Cookie" Type="System.String" Scope="User">
+      <Value Profile="(Default)">39983830859dJFaogrSxpgIcfvfy1T</Value>
+    </Setting>
+    <Setting Name="ServiceEndpointAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://www.microline.hr/WebServices/MOL.asmx</Value>
+    </Setting>
+    <Setting Name="StorageDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Temp</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

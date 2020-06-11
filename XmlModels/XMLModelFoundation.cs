@@ -1,4 +1,5 @@
 ﻿using Microline.WS.Core;
+using Microline.WS.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,27 @@ namespace Microline.WS.XMLModel
             {
                 xmlSerializer.Serialize(textWriter, this);
                 xml = textWriter.ToString();
+            }
+
+            return xml;
+        }
+
+        public virtual string SerializeToStringNoDeclaration()
+        {
+            string xml = null;
+            XmlSerializer xmlSerializer = new XmlSerializer(this.GetType());
+            var emptyNamespaces = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
+            var settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.OmitXmlDeclaration = true;
+
+            using (var stream = new StringWriter())
+            {
+                using (var writer = XmlWriter.Create(stream, settings))
+                {
+                    xmlSerializer.Serialize(writer, this, emptyNamespaces);
+                    xml = stream.ToString();
+                }
             }
 
             return xml;

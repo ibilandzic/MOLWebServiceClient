@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlModels", "XmlModels\XmlM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{3DF3E7AB-6A36-4F47-B81D-9EAA95555498}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{9BB8225B-8590-47BF-8981-9D517666D9AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientUI", "ClientUI\ClientUI.csproj", "{4EBAEAAA-1F8D-42D7-AF78-2D96A420731F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{3DF3E7AB-6A36-4F47-B81D-9EAA95555498}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DF3E7AB-6A36-4F47-B81D-9EAA95555498}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DF3E7AB-6A36-4F47-B81D-9EAA95555498}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BB8225B-8590-47BF-8981-9D517666D9AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BB8225B-8590-47BF-8981-9D517666D9AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BB8225B-8590-47BF-8981-9D517666D9AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BB8225B-8590-47BF-8981-9D517666D9AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EBAEAAA-1F8D-42D7-AF78-2D96A420731F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EBAEAAA-1F8D-42D7-AF78-2D96A420731F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EBAEAAA-1F8D-42D7-AF78-2D96A420731F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EBAEAAA-1F8D-42D7-AF78-2D96A420731F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

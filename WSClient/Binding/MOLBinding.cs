@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Microline.WS.Connector.Service.Binding
 {
-    public class WSBinding : IServiceBinding
+    public class MOLBinding : IServiceBinding
     {
         public CustomBinding GetCustomBinding()
         {
@@ -31,6 +31,9 @@ namespace Microline.WS.Connector.Service.Binding
             BasicHttpBinding binding = new BasicHttpBinding();
             binding.AllowCookies = true;
             binding.TextEncoding = Encoding.UTF8;
+            binding.MaxReceivedMessageSize = int.MaxValue;
+            binding.MaxBufferSize = int.MaxValue;
+            binding.MaxBufferPoolSize = int.MaxValue;
 
             binding.SendTimeout = new TimeSpan(0, 5, 0);
             binding.CloseTimeout = new TimeSpan(0, 5, 0);

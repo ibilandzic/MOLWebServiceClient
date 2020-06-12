@@ -53,6 +53,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceClient\ResultHandler.cs" />
     <Compile Include="ServiceClient\WSClient.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +186,15 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{3DF3E7AB-6A36-4F47-B81D-9EAA95555498}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmlModels\XML.csproj">
+      <Project>{ce8909c0-2f96-4b03-bba9-083ecab988c1}</Project>
+      <Name>XML</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

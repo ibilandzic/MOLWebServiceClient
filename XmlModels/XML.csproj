@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Item.cs" />
     <Compile Include="SO.cs" />
+    <Compile Include="Util.cs" />
     <Compile Include="XMLModelFoundation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

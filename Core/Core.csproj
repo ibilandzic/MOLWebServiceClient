@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\IContext.cs" />
+    <Compile Include="Context\WSContext.cs" />
     <Compile Include="Convert\DataConverter.cs" />
     <Compile Include="FixedData\ARTerms.cs" />
     <Compile Include="FixedData\ShipViaFOBKey.cs" />

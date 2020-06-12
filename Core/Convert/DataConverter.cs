@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Microline.WS.Core.Convert
 {
@@ -114,49 +115,31 @@ namespace Microline.WS.Core.Convert
             catch (Exception ex) { throw ex; }
         }
 
-        public static string FormatAsXML(string xml)
+        public static string FormatAsXML(string xml, bool omitDeclaration)
         {
-            string result = "";
+            
+            StringBuilder sb = new StringBuilder();
+            var element = XElement.Parse(xml);
 
-            MemoryStream mStream = new MemoryStream();
-            XmlTextWriter writer = new XmlTextWriter(mStream, Encoding.Unicode);
-            XmlDocument document = new XmlDocument();
+            var settings = new XmlWriterSettings();
+            settings.Indent = true;
+            if (omitDeclaration) settings.OmitXmlDeclaration = true;
 
             try
             {
-                // Load the XmlDocument with the XML.
-                document.LoadXml(xml);
+                using(var xmlWriter = XmlWriter.Create(sb, settings))
+                {
+                    element.Save(xmlWriter);
+                }
 
-                writer.Formatting = Formatting.Indented;
-
-                // Write the XML into a formatting XmlTextWriter
-                document.WriteContentTo(writer);
-                writer.Flush();
-                mStream.Flush();
-
-                // Have to rewind the MemoryStream in order to read
-                // its contents.
-                mStream.Position = 0;
-
-                // Read MemoryStream contents into a StreamReader.
-                StreamReader sReader = new StreamReader(mStream);
-
-                // Extract the text from the StreamReader.
-                string formattedXml = sReader.ReadToEnd();
-
-                result = formattedXml;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally
-            {
-                if (mStream != null) mStream.Close();
-                if (writer != null) writer.Close();
-            }
 
-            return result;
+
+            return sb.ToString();
         }
     }
 }

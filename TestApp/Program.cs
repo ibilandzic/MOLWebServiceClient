@@ -15,17 +15,56 @@ namespace TestApp
     class Program
     {
         
-        static async Task Main(string[] args)
+        static void  Main(string[] args)
         {
             DateTime startDate = DateTime.Now;
-            await testItemList();
+            testItemList();
             DateTime endDate = DateTime.Now;
             Console.WriteLine("Fetch completed");
             Console.WriteLine(String.Format("Fetched completed in {0} seconds", (endDate - startDate).TotalSeconds));
         }
 
 
-        private static async Task testItemList()
+        private static void testItemList()
+        {
+            string aspKey = "micpg";
+            string customerKey = "kupac";
+            string password = "bestpc";
+            string cookie = "39983830859dJFaogrSxpgIcfvfy1T";
+
+            System.IO.FileInfo f = new FileInfo(String.Format(@"C:\Temp\itemList_{0}.xml", DateTime.Now.ToString("ddMMyyyy_HH_mm")));
+
+            using (StreamWriter sw = f.AppendText())
+            {
+                try
+                {
+                    WSContext ctx = new WSContext(aspKey, customerKey, password, @"http://www.microline.hr/WebServices/MOL.asmx", @"C:\Temp", cookie);
+                    WSClient client = new WSClient(ctx);
+                    var report = client.GetAllItemsFiltered(null, "sam", "itemsFilteredSam");
+                    sw.WriteLine(report);
+                }
+                catch (Exception ex)
+                {
+                    sw.WriteLine(ex.Message);
+                    sw.WriteLine(ex.StackTrace);
+                    if (ex.InnerException != null)
+                    {
+
+                        sw.WriteLine(ex.InnerException.Message);
+                        sw.WriteLine(ex.InnerException.StackTrace);
+
+                        if (ex.InnerException.InnerException != null)
+                        {
+
+                            sw.WriteLine(ex.InnerException.InnerException.Message);
+                            sw.WriteLine(ex.InnerException.InnerException.StackTrace);
+                        }
+                    }
+                }
+            }
+        }
+
+        private static async Task testItemListAsync()
         {
             string aspKey = "micpg";
             string customerKey = "kupac";

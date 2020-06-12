@@ -22,7 +22,10 @@ namespace Microline.WS.Connector.Service.Client
             this.ctx = ctx;
         }
 
-
+        /// <summary>
+        /// Returns client
+        /// </summary>
+        /// <returns></returns>
         public MOLSoapClient getClient()
         {
             if (String.IsNullOrEmpty(ctx.ServiceURl)) throw new MissingFieldException("Url is not set");
@@ -32,6 +35,12 @@ namespace Microline.WS.Connector.Service.Client
             return client;
         }
 
+
+        /// <summary>
+        /// Returns client with different url
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public MOLSoapClient getClient(string url)
         {
             if (!String.IsNullOrEmpty(url)) this.ctx.ServiceURl = url;
@@ -139,6 +148,35 @@ namespace Microline.WS.Connector.Service.Client
                 return terms;
             }
             catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public async Task<Dictionary<string,string>> GetARTermsAsync()
+        {
+            Dictionary<string, string> terms = new Dictionary<string, string>();
+
+            try
+            {
+                MOLSoapClient client = getClient();
+                var result = await client.arTermsListAsync(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie);
+
+                if (result != null && !String.IsNullOrEmpty(result.Body.arTermsListResult))
+                {
+                    XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(result.Body.arTermsListResult);
+                    foreach (XmlElement el in doc.GetElementsByTagName("term"))
+                    {
+                        string key = ((XmlElement)el.GetElementsByTagName("key")[0]).InnerText;
+                        string description = ((XmlElement)el.GetElementsByTagName("description")[0]).InnerText;
+                        if (!terms.ContainsKey(key)) terms.Add(key, description);
+                    }
+                }
+
+                return terms;
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }

@@ -1,5 +1,6 @@
 ﻿using Microline.WS.Connector.Service;
 using Microline.WS.Connector.Service.Client;
+using Microline.WS.Core.Context;
 using Microline.WS.Core.Convert;
 using Microline.WS.XMLModel;
 using System;
@@ -14,14 +15,17 @@ namespace TestApp
     class Program
     {
         
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-
-            testItemList();
+            DateTime startDate = DateTime.Now;
+            await testItemList();
+            DateTime endDate = DateTime.Now;
+            Console.WriteLine("Fetch completed");
+            Console.WriteLine(String.Format("Fetched completed in {0} seconds", (endDate - startDate).TotalSeconds));
         }
 
 
-        private static void testItemList()
+        private static async Task testItemList()
         {
             string aspKey = "micpg";
             string customerKey = "kupac";
@@ -34,9 +38,10 @@ namespace TestApp
             {
                 try
                 {
-                    MOLSoapClient client = new WSClient(@"http://www.microline.hr/WebServices/MOL.asmx").getClient();
-                    string dataLst = client.itemList(aspKey, customerKey, password, cookie);
-                    sw.WriteLine(DataConverter.FormatAsXML(dataLst));
+                    WSContext ctx = new WSContext(aspKey, customerKey, password, @"http://www.microline.hr/WebServices/MOL.asmx", @"C:\Temp", cookie);
+                    WSClient client = new WSClient(ctx);
+                    var report = await client.GetAllItemsFilteredAsync(null, "sam", "itemsFilteredSam");
+                    sw.WriteLine(report);
                 }
                 catch(Exception ex)
                 {

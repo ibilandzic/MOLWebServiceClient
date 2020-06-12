@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -59,9 +60,9 @@
       <Project>{6fe6d79f-6c44-44db-8b00-31a8e71dda5f}</Project>
       <Name>WSClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XmlModels\XmlModels.csproj">
+    <ProjectReference Include="..\XmlModels\XML.csproj">
       <Project>{ce8909c0-2f96-4b03-bba9-083ecab988c1}</Project>
-      <Name>XmlModels</Name>
+      <Name>XML</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

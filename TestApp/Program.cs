@@ -40,7 +40,7 @@ namespace TestApp
                 {
                     WSContext ctx = new WSContext(aspKey, customerKey, password, @"http://www.microline.hr/WebServices/MOL.asmx", @"C:\Temp", cookie);
                     WSClient client = new WSClient(ctx);
-                    var report = client.GetAllItemsFiltered(null, "sam", "itemsFilteredSam");
+                    var report = client.GetItemsFiltered(null, "sam", "itemsFilteredSam");
                     sw.WriteLine(report);
                 }
                 catch (Exception ex)
@@ -79,7 +79,7 @@ namespace TestApp
                 {
                     WSContext ctx = new WSContext(aspKey, customerKey, password, @"http://www.microline.hr/WebServices/MOL.asmx", @"C:\Temp", cookie);
                     WSClient client = new WSClient(ctx);
-                    var report = await client.GetAllItemsFilteredAsync(null, "sam", "itemsFilteredSam");
+                    var report = await client.GetItemsFilteredAsync(null, "sam", "itemsFilteredSam");
                     sw.WriteLine(report);
                 }
                 catch(Exception ex)

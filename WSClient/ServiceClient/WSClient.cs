@@ -47,7 +47,7 @@ namespace Microline.WS.Connector.Service.Client
             return getClient();
         }
 
-
+        #region Get items details
         /// <summary>
         /// Gets all active items
         /// </summary>
@@ -72,7 +72,34 @@ namespace Microline.WS.Connector.Service.Client
 
         }
 
+        /// <summary>
+        /// Gets all active items details in async matter
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="qty"></param>
+        /// <param name="termsKey"></param>
+        /// <param name="detailed"></param>
+        /// <returns></returns>
+        public async Task<string> GetAllItemsAsync(string fileName, int qty = 0, string termsKey = "1", bool detailed = true)
+        {
+            StringBuilder sb = new StringBuilder();
+            List<string> items = getItemKeyList();
+            if (items.Count == 0)
+            {
+                sb.AppendLine("Nije dohvaćen niti jedan artikal");
+            }
+            else
+            {
+                if (String.IsNullOrEmpty(fileName)) fileName = "allItems";
+                var result = await getItemDetailsAsync(fileName, items, qty, termsKey, detailed);
+                sb.AppendLine(result);
+            }
+
+            return sb.ToString();
+        }
+
         
+
         /// <summary>
         /// Gets all active items filtered by item type and/or item trademark
         /// </summary>
@@ -83,7 +110,7 @@ namespace Microline.WS.Connector.Service.Client
         /// <param name="qty"></param>
         /// <param name="detailed"></param>
         /// <returns></returns>
-        public string GetAllItemsFiltered(string itemType, string tradeMark, string fileName, string termsKey = "1", int qty = 0, bool detailed = true)
+        public string GetItemsFiltered(string itemType, string tradeMark, string fileName, string termsKey = "1", int qty = 0, bool detailed = true)
         {
             StringBuilder sb = new StringBuilder();
             List<string> items = getItemKeyListFiltered(itemType, tradeMark);
@@ -101,7 +128,7 @@ namespace Microline.WS.Connector.Service.Client
         }
 
 
-        public async Task<string> GetAllItemsFilteredAsync(string itemType, string tradeMark, string fileName, string termsKey = "1", int qty = 0, bool detailed = true)
+        public async Task<string> GetItemsFilteredAsync(string itemType, string tradeMark, string fileName, string termsKey = "1", int qty = 0, bool detailed = true)
         {
             StringBuilder sb = new StringBuilder();
             List<string> items = getItemKeyListFiltered(itemType, tradeMark);
@@ -120,7 +147,9 @@ namespace Microline.WS.Connector.Service.Client
 
         }
 
+        #endregion
 
+        #region Getting helper data (terms, subtypes)
         /// <summary>
         /// Gets all available terms
         /// </summary>
@@ -181,6 +210,139 @@ namespace Microline.WS.Connector.Service.Client
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// Gets item types list
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string, string> GetItemTypes()
+        {
+            Dictionary<string, string> types = new Dictionary<string, string>();
+
+            try
+            {
+                MOLSoapClient client = getClient();
+                string result = client.itemTypeList(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie);
+
+                if (!String.IsNullOrEmpty(result))
+                {
+                    XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(result);
+                    foreach (XmlElement el in doc.GetElementsByTagName("type"))
+                    {
+                        string key = ((XmlElement)el.GetElementsByTagName("key")[0]).InnerText;
+                        string description = ((XmlElement)el.GetElementsByTagName("description")[0]).InnerText;
+                        if (!types.ContainsKey(key)) types.Add(key, description);
+                    }
+                }
+
+                return types;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Gets all item types asynchronously
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Dictionary<string, string>> GetItemTypesAsync()
+        {
+            Dictionary<string, string> types = new Dictionary<string, string>();
+
+            try
+            {
+                MOLSoapClient client = getClient();
+                var result = await client.itemTypeListAsync(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie);
+
+                if (result != null && !String.IsNullOrEmpty(result.Body.itemTypeListResult))
+                {
+                    XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(result.Body.itemTypeListResult);
+                    foreach (XmlElement el in doc.GetElementsByTagName("type"))
+                    {
+                        string key = ((XmlElement)el.GetElementsByTagName("key")[0]).InnerText;
+                        string description = ((XmlElement)el.GetElementsByTagName("description")[0]).InnerText;
+                        if (!types.ContainsKey(key)) types.Add(key, description);
+                    }
+                }
+
+                return types;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Gets trademark list
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string, string> GetTrademarkList()
+        {
+            Dictionary<string, string> trademarks = new Dictionary<string, string>();
+
+            try
+            {
+                MOLSoapClient client = getClient();
+                string result = client.tradeMarkList(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie);
+
+                if (!String.IsNullOrEmpty(result))
+                {
+                    XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(result);
+                    foreach (XmlElement el in doc.SelectNodes("tradeMarks/tradeMark"))
+                    {
+                        string key = el.SelectSingleNode("key").InnerText;//((XmlElement)el.GetElementsByTagName("key")[0]).InnerText;
+                        string description = el.SelectSingleNode("description").InnerText;
+                        if (!trademarks.ContainsKey(key)) trademarks.Add(key, description);
+                    }
+                }
+
+                return trademarks;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Gets trademark list async
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Dictionary<string, string>> GetTrademarkListAsync()
+        {
+            Dictionary<string, string> trademarks = new Dictionary<string, string>();
+
+            try
+            {
+                MOLSoapClient client = getClient();
+                var result = await client.tradeMarkListAsync(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie);
+                if (result != null && !String.IsNullOrEmpty(result.Body.tradeMarkListResult))
+                {
+                    XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(result.Body.tradeMarkListResult);
+                    foreach (XmlElement el in doc.SelectNodes("tradeMarks/tradeMark"))
+                    {
+                        string key = el.SelectSingleNode("key").InnerText;//((XmlElement)el.GetElementsByTagName("key")[0]).InnerText;
+                        string description = el.SelectSingleNode("description").InnerText;
+                        if (!trademarks.ContainsKey(key)) trademarks.Add(key, description);
+                    }
+                }
+
+                return trademarks;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        #endregion
 
         #region Private methods
         /// <summary>

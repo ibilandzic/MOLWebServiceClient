@@ -44,6 +44,7 @@
     <Compile Include="Context\IContext.cs" />
     <Compile Include="Context\WSContext.cs" />
     <Compile Include="Convert\DataConverter.cs" />
+    <Compile Include="Exception\ExceptionHandler.cs" />
     <Compile Include="FixedData\ARTerms.cs" />
     <Compile Include="FixedData\ShipViaFOBKey.cs" />
     <Compile Include="Exception\InvalidValueException.cs" />

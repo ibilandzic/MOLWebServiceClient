@@ -59,8 +59,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ClientSettings.xaml.cs">
+      <DependentUpon>ClientSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemDetails.xaml.cs">
+      <DependentUpon>ItemDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MOLWSClientHome.xaml.cs">
+      <DependentUpon>MOLWSClientHome.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
   </ItemGroup>
@@ -105,10 +114,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ClientSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MOLWSClientHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

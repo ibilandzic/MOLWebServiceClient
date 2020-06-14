@@ -51,6 +51,19 @@ namespace Microline.WS.Core.FixedData
 
             return select;
         }
+
+        public static Dictionary<int, string> GetSimplifiedAvailableList()
+        {
+            Dictionary<int, string> select = new Dictionary<int, string>();
+            var sourceDictionary = GetAvailableList();
+
+            foreach(KeyValuePair<int, ShipViaFOBKey> fob in sourceDictionary)
+            {
+                select.Add(fob.Key, fob.Value.description);
+            }
+
+            return select;
+        }
     }
 
     

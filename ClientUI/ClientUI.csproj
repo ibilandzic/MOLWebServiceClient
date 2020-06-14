@@ -62,6 +62,9 @@
     <Compile Include="ClientSettings.xaml.cs">
       <DependentUpon>ClientSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateSO.xaml.cs">
+      <DependentUpon>CreateSO.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ItemDetails.xaml.cs">
       <DependentUpon>ItemDetails.xaml</DependentUpon>
     </Compile>
@@ -115,6 +118,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="ClientSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateSO.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

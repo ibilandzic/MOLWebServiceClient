@@ -35,10 +35,10 @@ namespace Microline.WS.Connector.Service.Binding
             binding.MaxBufferSize = int.MaxValue;
             binding.MaxBufferPoolSize = int.MaxValue;
 
-            binding.SendTimeout = new TimeSpan(0, 5, 0);
-            binding.CloseTimeout = new TimeSpan(0, 5, 0);
-            binding.OpenTimeout = new TimeSpan(0, 5, 0);
-            binding.ReceiveTimeout = new TimeSpan(0, 5, 0);
+            binding.SendTimeout = new TimeSpan(0, 25, 0);
+            binding.CloseTimeout = new TimeSpan(0, 25, 0);
+            binding.OpenTimeout = new TimeSpan(0, 25, 0);
+            binding.ReceiveTimeout = new TimeSpan(0, 25, 0);
 
             return binding;
         }

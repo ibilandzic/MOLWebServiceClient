@@ -26,6 +26,8 @@ namespace Microline.WS.XMLModel
         private bool payAfterSold;
         private List<Item> items;
 
+        private int? pk;
+
         public SO(): this(false, null, null, null, null, null, null, null, 1, null, false, null)
         {
 
@@ -48,6 +50,8 @@ namespace Microline.WS.XMLModel
             this.payAfterSold = payAfterSold;
             this.items = items;
         }
+
+
 
         [XmlElementAttribute("moment")]
         public String Moment
@@ -152,5 +156,6 @@ namespace Microline.WS.XMLModel
         [XmlArray("items")]
         [XmlArrayItem("item")]
         public List<Item> Items { get { return items; } set => items = value; }
+
     }
 }

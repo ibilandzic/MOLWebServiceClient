@@ -46,6 +46,7 @@
     <Compile Include="Convert\DataConverter.cs" />
     <Compile Include="Exception\ExceptionHandler.cs" />
     <Compile Include="FixedData\ARTerms.cs" />
+    <Compile Include="FixedData\City.cs" />
     <Compile Include="FixedData\ShipViaFOBKey.cs" />
     <Compile Include="Exception\InvalidValueException.cs" />
     <Compile Include="Exception\StringNotSetException.cs" />

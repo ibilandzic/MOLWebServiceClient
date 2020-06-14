@@ -5,13 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Microline.WS.Client.UI"
       mc:Ignorable="d" 
-      d:DesignHeight="450"
-      Title="MOLWSClient-Home" Width="850">
+      d:DesignHeight="460.736"
+      Title="MOLWSClient-Home" Width="520" WindowTitle="Glavni meni">
 
-    <Grid RenderTransformOrigin="0.004,0.01">
-        <Button Content="Postavke" Height="33" VerticalAlignment="Top" Width="173" Click="NavigateToSettings" Margin="28,57,599,0"/>
-        <Button Content="Dohvati artikle" Height="33" VerticalAlignment="Top" Width="173" Margin="28,106,599,0" Click="NavigateToItemDetails"/>
-        <Button Content="Predaj NK" Height="33" VerticalAlignment="Top" Width="173" Margin="28,156,599,0" />
+    <Grid Margin="0,0,10,0" Height="451" VerticalAlignment="Top">
+        <StackPanel Margin="28,40,284,240" Orientation="Vertical">
+            <Button Content="Postavke" Height="33" VerticalAlignment="Top" Width="173" Click="NavigateToSettings"/>
+            <Button Content="Dohvati artikle" Height="33" VerticalAlignment="Top" Width="173" Click="NavigateToItemDetails"/>
+            <Button Content="Predaj NK" Height="33" VerticalAlignment="Top" Width="173" Click="NavigateToPostSO"/>
+        </StackPanel>
 
     </Grid>
 </Page>

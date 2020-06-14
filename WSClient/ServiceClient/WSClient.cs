@@ -147,6 +147,29 @@ namespace Microline.WS.Connector.Service.Client
 
         }
 
+        /// <summary>
+        /// Get single item data
+        /// </summary>
+        /// <param name="itemKey"></param>
+        /// <param name="fileName"></param>
+        /// <param name="termsKey"></param>
+        /// <param name="qty"></param>
+        /// <param name="detailed"></param>
+        /// <returns></returns>
+        public async Task<string> GetItemDetails(string itemKey, string fileName, string termsKey = "1", int qty = 0, bool detailed = true)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (!string.IsNullOrEmpty(itemKey))
+            {
+                if (String.IsNullOrEmpty(fileName)) fileName = itemKey;
+                var result = await getItemDetailsAsync(fileName, new List<string>() { itemKey }, qty, termsKey, detailed);
+                sb.AppendLine(result);
+            }
+            else sb.AppendLine("Šifra artikla je obavezan podatak");
+
+            return sb.ToString();
+        }
+
         #endregion
 
         #region Getting helper data (terms, subtypes)
@@ -341,6 +364,50 @@ namespace Microline.WS.Connector.Service.Client
         }
 
 
+        /// <summary>
+        /// Async post so, argument is so
+        /// </summary>
+        /// <param name="so"></param>
+        /// <returns></returns>
+
+        public async Task<string> PostSOAsync(Microline.WS.XMLModel.SO so)
+        {
+            if (so == null) throw new InvalidDataException("SO must be instanciated object");
+            else
+            {
+                var response = await PostSOAsync(so.SerializeToStringNoDeclaration());
+                return response;
+            }
+        }
+        /// <summary>
+        /// Post SO
+        /// </summary>
+        /// <param name="soAsXML"></param>
+        /// <returns></returns>
+        public async Task<string> PostSOAsync(string soAsXML)
+        {
+            if (String.IsNullOrEmpty(soAsXML)) throw new InvalidDataException("XML data must be a non null non empty string");
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                MOLSoapClient client = getClient();
+                var result = await client.addSOAsync(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie, soAsXML);
+                if (result != null && !String.IsNullOrEmpty(result.Body.addSOResult))
+                {
+                    XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(result.Body.addSOResult);
+                    if (doc.SelectSingleNode("result") != null) sb.AppendLine("Rezultat: " + doc.SelectSingleNode("result").InnerText);
+                    if (doc.SelectSingleNode("documentNumber") != null) sb.AppendLine("Broj narudžbe: " + doc.SelectSingleNode("documentNumber").InnerText);
+                    if (doc.SelectSingleNode("soPK") != null) sb.AppendLine("PK: " + doc.SelectSingleNode("soPK").InnerText);
+                }
+                else sb.Append("Došlo je do greške, nema odgovora");
+
+                return sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         #endregion
 
@@ -453,31 +520,42 @@ namespace Microline.WS.Connector.Service.Client
         /// <returns></returns>
         private async Task<string> getItemDetailsAsync(string fileName, List<string> items, int qty = 0, string termsKey = "1", bool detailed = true)
         {
-            MOLSoapClient client = getClient();
-            StringBuilder sb = new StringBuilder();
-            if (ctx.IsSavingPossible && !String.IsNullOrEmpty(fileName) && items != null && items.Count > 0)
+            try
             {
-                System.IO.FileInfo f = new FileInfo(String.Format(@"{0}\{2}_{1}.xml", ctx.Directory, DateTime.Now.ToString("yyyyMMddHHmm"), fileName));
-                using (StreamWriter sw = f.AppendText())
+                MOLSoapClient client = getClient();
+                StringBuilder sb = new StringBuilder();
+                if (ctx.IsSavingPossible && !String.IsNullOrEmpty(fileName) && items != null && items.Count > 0)
                 {
-                    sw.WriteLine("<items>");
-                    var itemDataTasks = new List<Task<itemDataResponse>>();
-                    foreach (string item in items) itemDataTasks.Add(client.itemDataAsync(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie, item, qty, detailed, termsKey));
-
-                    sb.AppendLine("Dohvaća se " + itemDataTasks.Count + " artikala");
-                    while (itemDataTasks.Count > 0)
+                    System.IO.FileInfo f = new FileInfo(String.Format(@"{0}\{2}_{1}.xml", ctx.Directory, DateTime.Now.ToString("yyyyMMddHHmm"), fileName));
+                    using (StreamWriter sw = f.AppendText())
                     {
-                        Task<itemDataResponse> finishedTask = await Task.WhenAny(itemDataTasks);
-                        string result = finishedTask.Result.Body.itemDataResult;
-                        sw.WriteLine(DataConverter.FormatAsXML(result, true));
-                        itemDataTasks.Remove(finishedTask);
-                    }
+                        sw.WriteLine("<items>");
+                        var itemDataTasks = new List<Task<itemDataResponse>>();
+                        foreach (string item in items) itemDataTasks.Add(client.itemDataAsync(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie, item, qty, detailed, termsKey));
 
-                    sb.AppendLine("Uspjšeno!");
+                        sb.AppendLine("Dohvaća se " + itemDataTasks.Count + " artikala");
+                        while (itemDataTasks.Count > 0)
+                        {
+                            Task<itemDataResponse> finishedTask = await Task.WhenAny(itemDataTasks);
+                            if (finishedTask != null && finishedTask.Result != null && finishedTask.Result.Body != null && finishedTask.Result.Body.itemDataResult != null)
+                            {
+                                string result = finishedTask.Result.Body.itemDataResult;
+                                sw.WriteLine(DataConverter.FormatAsXML(result, true));
+                            }
+                            itemDataTasks.Remove(finishedTask);
+                        }
+
+                        sb.AppendLine("Uspješno!");
+                    }
                 }
+                else sb.AppendLine("Ne dohvaća se ništa je spremanje nije omogućeno");
+                return sb.ToString();
             }
-            else sb.AppendLine("Ne dohvaća se ništa je spremanje nije omogućeno");
-            return sb.ToString();
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>

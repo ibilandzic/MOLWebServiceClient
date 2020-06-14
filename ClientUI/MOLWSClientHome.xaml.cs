@@ -36,5 +36,11 @@ namespace Microline.WS.Client.UI
             ItemDetails itemDetails = new ItemDetails();
             NavigationService.Navigate(itemDetails);
         }
+
+        private void NavigateToPostSO(object sender, RoutedEventArgs e)
+        {
+            CreateSO createSO = new CreateSO();
+            NavigationService.Navigate(createSO);
+        }
     }
 }

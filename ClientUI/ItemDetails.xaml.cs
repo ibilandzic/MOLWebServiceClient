@@ -50,6 +50,7 @@ namespace Microline.WS.Client.UI
         private async Task getTrademarkList()
         {
             var result = await client.GetTrademarkListAsync();
+            result.Add("", null);
             TrademarkList.ItemsSource = result;
             TrademarkList.SelectedValuePath = "Key";
             TrademarkList.DisplayMemberPath = "Value";
@@ -60,6 +61,7 @@ namespace Microline.WS.Client.UI
         private async Task getItemTypes()
         {
             var result = await client.GetItemTypesAsync();
+            result.Add("", null);
             ItemTypeList.ItemsSource = result;
             ItemTypeList.SelectedValuePath = "Key";
             ItemTypeList.DisplayMemberPath = "Value";
@@ -77,35 +79,45 @@ namespace Microline.WS.Client.UI
             string itemType = ItemTypeList.SelectedValue != null ? ItemTypeList.SelectedValue.ToString() : null;
             string trademarkKey = TrademarkList.SelectedValue!=null ? TrademarkList.SelectedValue.ToString() : null;
             string countTry = ItemQuatity.Text;
+            string itemKey = ItemKey.Text;
+            bool extraInfo = ExtraInfo.IsChecked ?? false;
 
             int qty = 0;
             if ( String.IsNullOrEmpty(countTry) || !int.TryParse(countTry, out qty)) qty = 0;
 
-
-
+            DateTime start = DateTime.Now;
+            DateTime end;
             try
             {
-                DateTime start = DateTime.Now;
                 string msg;
-                if (!String.IsNullOrEmpty(itemType) || !String.IsNullOrEmpty(trademarkKey))
-                {
-                    var result = await client.GetItemsFilteredAsync(itemType, trademarkKey, "itemFiltered", arTerm, qty, true);
-                    msg = result;
-                }
-                else
-                {
-                    var result = await client.GetAllItemsAsync("allItems", qty, arTerm, true);
-                    msg = result;
-                }
-                    DateTime end = DateTime.Now;
-                    MessageBox.Show(String.Format("Vrijeme izvođenja: {0} sekundi, {1}", msg, (end - start).Seconds));
-                
 
+                if (!String.IsNullOrEmpty(itemKey)) //single item fetch
+                {
+                    var result = await client.GetItemDetails(itemKey, itemKey, arTerm, 0, extraInfo);
+                    msg = result;
+                }
+                else //fetch multiple items
+                {
+                    if (!String.IsNullOrEmpty(itemType) || !String.IsNullOrEmpty(trademarkKey))
+                    {
+                        var result = await client.GetItemsFilteredAsync(itemType, trademarkKey, "itemFiltered", arTerm, qty, extraInfo);
+                        msg = result;
+                    }
+                    else
+                    {
+                        var result = await client.GetAllItemsAsync("allItems", qty, arTerm, extraInfo);
+                        msg = result;
+                    }
+                }
+
+                end = DateTime.Now;
+                MessageBox.Show(String.Format("Vrijeme izvođenja: {2} minuta i {1} sekundi, {0}", msg, (end - start).Seconds, (end-start).Minutes));
             }
             catch (Exception ex)
             {
                 ExceptionHandler.Log(ex);
-                MessageBox.Show("Došlo je do greške");
+                end = DateTime.Now;
+                MessageBox.Show(String.Format("Došlo je do greške. Vrijeme izvođenja: {0}", (end - start).TotalSeconds));
             }
         }
 

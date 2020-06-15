@@ -73,6 +73,7 @@ namespace Microline.WS.Client.UI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://www.microline.hr/WebServices/MOL.asmx")]
         public string ServiceEndpointAddress {
             get {

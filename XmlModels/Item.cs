@@ -9,6 +9,7 @@ using System.Xml.Serialization;
 namespace Microline.WS.XMLModel
 {
     [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute()]
     public class Item
     {
         private string key;

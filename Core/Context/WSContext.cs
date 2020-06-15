@@ -76,5 +76,13 @@ namespace Microline.WS.Core.Context
                 return !String.IsNullOrEmpty(directory) && System.IO.Directory.Exists(directory);
             }
         }
+
+        public bool IsMandatoryDataSet
+        {
+            get
+            {
+                return !String.IsNullOrEmpty(aspKey) && !String.IsNullOrEmpty(customerKey) && !String.IsNullOrEmpty(password) && !String.IsNullOrEmpty(serviceUrl);
+            }
+        }
     }
 }

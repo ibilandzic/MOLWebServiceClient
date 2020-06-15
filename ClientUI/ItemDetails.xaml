@@ -4,11 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Microline.WS.Client.UI"
-      mc:Ignorable="d" d:DesignWidth="800"
+      mc:Ignorable="d"
       Title="ItemDetails"
-      WindowTitle="Dohvat podataka o artiklima" Height="458.649">
+      WindowTitle="Dohvat podataka o artiklima" Height="458.649" Width="500.167">
 
-    <Grid Margin="0,0,401,0">
+    <Grid Margin="0,0,10,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="37*"/>
@@ -40,6 +40,8 @@
         </DockPanel>
         <CheckBox Content="Dodatni podaci" HorizontalAlignment="Left" Margin="23,262,0,0" VerticalAlignment="Top" Name="ExtraInfo"/>
 
-
+        <Button HorizontalAlignment="Left" Margin="268,0,0,0" VerticalAlignment="Top" Width="40" Background="{x:Null}" BorderThickness="0,0,0,0" Click="GoHome" Grid.Column="1">
+            <Image Height="30" Width="30" Source="Icons/homeColor.png"/>
+        </Button>
     </Grid>
 </Page>

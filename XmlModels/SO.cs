@@ -120,15 +120,16 @@ namespace Microline.WS.XMLModel
         public string ShipToAddress1 { get => shipToAddress1; set => shipToAddress1 = value; }
 
         [XmlElementAttribute("shipToCityId")]
-        public int? ShipToCityId
+        public string ShipToCityId
         {
             get
             {
-                return shipToCityId;
+                return shipToCityId.HasValue ? shipToCityId.Value.ToString() : "";
             }
             set
             {
-
+                if (value != null && value != "") shipToCityId = DataConverter.ToInt32(value);
+                else shipToCityId = null;
             }
         }
 

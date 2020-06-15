@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Microline.WS.Core
 {
-    public class InvalidValueException : Exception 
+    public class InvalidValueException : ErrorException 
     {
         public InvalidValueException(string message) : base(message)
         {

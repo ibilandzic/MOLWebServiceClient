@@ -15,7 +15,7 @@ namespace Microline.WS.XMLModel
             else
             {
                 try
-                {
+                {   
                     XmlDocument doc = new XmlDocument();
                     doc.LoadXml(input);
                     return doc;

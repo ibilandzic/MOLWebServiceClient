@@ -1,7 +1,9 @@
 ﻿using Microline.WS.Connector.Service;
 using Microline.WS.Connector.Service.Binding;
+using Microline.WS.Core;
 using Microline.WS.Core.Context;
 using Microline.WS.Core.Convert;
+using Microline.WS.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,7 +30,8 @@ namespace Microline.WS.Connector.Service.Client
         /// <returns></returns>
         public MOLSoapClient getClient()
         {
-            if (String.IsNullOrEmpty(ctx.ServiceURl)) throw new MissingFieldException("Url is not set");
+            if (String.IsNullOrEmpty(ctx.ServiceURl)) throw new StringNotSetException("Url is not set");
+            if (!ctx.IsMandatoryDataSet) throw new StringNotSetException("Context is missing mandatory data.");
             MOLBinding binding = new MOLBinding();
             MOLSoapClient client = new MOLSoapClient(binding.GetHttpBinding(), new EndpointAddress(ctx.ServiceURl));
 
@@ -394,10 +397,11 @@ namespace Microline.WS.Connector.Service.Client
                 var result = await client.addSOAsync(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie, soAsXML);
                 if (result != null && !String.IsNullOrEmpty(result.Body.addSOResult))
                 {
-                    XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(result.Body.addSOResult);
-                    if (doc.SelectSingleNode("result") != null) sb.AppendLine("Rezultat: " + doc.SelectSingleNode("result").InnerText);
-                    if (doc.SelectSingleNode("documentNumber") != null) sb.AppendLine("Broj narudžbe: " + doc.SelectSingleNode("documentNumber").InnerText);
-                    if (doc.SelectSingleNode("soPK") != null) sb.AppendLine("PK: " + doc.SelectSingleNode("soPK").InnerText);
+                    string modifiedResult = String.Format("<root>{0}</root>", result.Body.addSOResult);
+                    XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(modifiedResult);
+                    if (doc.SelectSingleNode("root/result") != null) sb.AppendLine("Rezultat: " + doc.SelectSingleNode("root/result").InnerText);
+                    if (doc.SelectSingleNode("root/documentNumber") != null) sb.AppendLine("Broj narudžbe: " + doc.SelectSingleNode("root/documentNumber").InnerText);
+                    if (doc.SelectSingleNode("root/soPK") != null) sb.AppendLine("PK: " + doc.SelectSingleNode("root/soPK").InnerText);
                 }
                 else sb.Append("Došlo je do greške, nema odgovora");
 
@@ -408,6 +412,193 @@ namespace Microline.WS.Connector.Service.Client
                 throw ex;
             }
         }
+
+
+        /// <summary>
+        /// Gets data for so including lines
+        /// </summary>
+        /// <param name="orderNumber"></param>
+        /// <param name="extraData"></param>
+        /// <returns></returns>
+        public async Task<string> GetSODataAsync(string orderNumber, string fileName, bool extraData)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (!String.IsNullOrEmpty(orderNumber))
+            {
+                try
+                {
+                    int? pk = soPK(orderNumber);
+
+                    if (pk.HasValue)
+                    {
+                        var result =await getSODataAsync(fileName, pk.Value, extraData);
+                        sb.AppendLine(result);
+                    }
+                    else sb.AppendLine(String.Format("Za NK {0} nije pronađen primarni ključ", orderNumber));
+                    
+                }
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else sb.Append("Nedostaje broj narudžbe kupca");
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Delivers so by order nmber
+        /// </summary>
+        /// <param name="orderNumber"></param>
+        /// <returns></returns>
+        public async Task<string> DeliverSOAsync(string orderNumber)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (!String.IsNullOrEmpty(orderNumber))
+            {
+                try
+                {
+                    int? pk = soPK(orderNumber);
+
+                    if (pk.HasValue)
+                    {
+                        MOLSoapClient client = getClient();
+                        var result = await client.deliverSOAsync(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie, pk.Value);
+
+                        if (result != null && result.Body != null && result.Body.deliverSOResult != null)
+                        {
+                            if (result.Body.deliverSOResult.Contains("<result>"))
+                            {
+                                XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(result.Body.deliverSOResult);
+                                XmlNode el = doc.GetElementsByTagName("result")[0];
+                                sb.AppendLine(el.InnerText);
+                            }
+                            else sb.AppendLine("Nedostaje rezultat");
+                        }
+                    }
+                    else sb.AppendLine(String.Format("Za NK {0} nije pronađen primarni ključ", orderNumber));
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else sb.Append("Nedostaje broj narudžbe kupca");
+
+            return sb.ToString();
+        }
+
+
+        /// <summary>
+        /// Deletes so async
+        /// </summary>
+        /// <param name="orderNumber"></param>
+        /// <returns></returns>
+        public async Task<string> DeleteSOAsync(string orderNumber)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (!String.IsNullOrEmpty(orderNumber))
+            {
+                try
+                {
+                    int? pk = soPK(orderNumber);
+
+                    if (pk.HasValue)
+                    {
+                        MOLSoapClient client = getClient();
+                        var result = await client.deleteSOAsync(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie, pk.Value);
+
+                        if (result != null && result.Body != null && result.Body.deleteSOResult != null)
+                        {
+                            if (result.Body.deleteSOResult.Contains("<result>"))
+                            {
+                                XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(result.Body.deleteSOResult);
+                                XmlNode el = doc.GetElementsByTagName("result")[0];
+                                sb.AppendLine(el.InnerText);
+                            }
+                            else sb.AppendLine("Nedostaje rezultat");
+                        }
+                    }
+                    else sb.AppendLine(String.Format("Za NK {0} nije pronađen primarni ključ", orderNumber));
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else sb.Append("Nedostaje broj narudžbe kupca");
+
+            return sb.ToString();
+        }
+
+
+        public async Task<string> GetSIDataAsync(string invoiceNumber, string fileName)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (!String.IsNullOrEmpty(invoiceNumber))
+            {
+                try
+                {
+                    string sysdocid  = invoiceSysdocid(invoiceNumber);
+
+                    if (!String.IsNullOrEmpty(sysdocid))
+                    {
+                        var result = await getSalesInvoiceAsync(fileName, sysdocid);
+                        sb.AppendLine(result);
+                    }
+                    else sb.AppendLine(String.Format("Za račun {0} nije pronađen primarni ključ", invoiceNumber));
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else sb.Append("Nedostaje broj narudžbe kupca");
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Gets customer statement async
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public async Task<string> CustomerStatementAsync(string fileName)
+        {
+            MOLSoapClient client = getClient();
+            StringBuilder sb = new StringBuilder();
+
+            if (ctx.IsSavingPossible && !String.IsNullOrEmpty(fileName))
+            {
+                System.IO.FileInfo f = new FileInfo(String.Format(@"{0}\{2}_{1}.xml", ctx.Directory, DateTime.Now.ToString("yyyyMMddHHmm"), fileName));
+                using (StreamWriter sw = f.AppendText())
+                {
+                    var result = await client.customerStatementAsync(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie);
+                    if (result != null && result.Body != null && result.Body.customerStatementResult != null)
+                    {
+                        if (result.Body.customerStatementResult.Contains("<result>"))
+                        {
+                            XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(result.Body.customerStatementResult);
+                            XmlNode el = doc.GetElementsByTagName("result")[0];
+                            sb.AppendLine(el.InnerText);
+                        }
+                        else
+                        {
+                            sw.WriteLine(DataConverter.FormatAsXML(result.Body.customerStatementResult, true));
+                            sb.AppendLine("Uspješno");
+                        }
+                    }
+                }
+            }
+            else sb.AppendLine("Greška! Mogući uzroci: Spremanje nije moguće, nedostaje ime datoteke za spremanje ili neodstaje sistemski broj računa");
+
+            return sb.ToString();
+        }
+
 
         #endregion
 
@@ -558,14 +749,137 @@ namespace Microline.WS.Connector.Service.Client
             }
         }
 
-        /// <summary>
-        /// Get filtered item lst
-        /// </summary>
-        /// <param name="itemType"></param>
-        /// <param name="tradeMarkKey"></param>
-        /// <returns></returns>
-        
+        private int? soPK(string orderNumber)
+        {
+            int? pk = null;
+            if (!String.IsNullOrEmpty(orderNumber))
+            {
+                try
+                {
+                    MOLSoapClient client = getClient();
+                    string result =  client.soPK(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie, orderNumber);
+                    if (!String.IsNullOrEmpty(result))
+                    {
+                        int? intTry = DataConverter.ToInt32(result, DataConverter.Action.ReturnNull, -1);
+                        if (intTry.HasValue && intTry.Value != -1) pk = intTry;
+                    }
+  
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
 
+            return pk;
+        }
+
+        /// <summary>
+        /// Gets so data async
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="pk"></param>
+        /// <param name="extraData"></param>
+        /// <returns></returns>
+        private async Task<string> getSODataAsync(string fileName, int pk, bool extraData)
+        {
+
+            MOLSoapClient client = getClient();
+            StringBuilder sb = new StringBuilder();
+
+            if (ctx.IsSavingPossible && !String.IsNullOrEmpty(fileName))
+            {
+                System.IO.FileInfo f = new FileInfo(String.Format(@"{0}\{2}_{1}.xml", ctx.Directory, DateTime.Now.ToString("yyyyMMddHHmm"), fileName));
+                using (StreamWriter sw = f.AppendText())
+                {
+                    var result = await client.soDataAsync(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie, pk, extraData);
+                    if (result != null && result.Body != null && result.Body.soDataResult != null)
+                    {
+                        if (result.Body.soDataResult.Contains("<result>"))
+                        {
+                            XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(result.Body.soDataResult);
+                            XmlNode el = doc.GetElementsByTagName("result")[0];
+                            sb.AppendLine(el.InnerText);
+                        }
+                        else
+                        {
+                            sw.WriteLine(DataConverter.FormatAsXML(result.Body.soDataResult, true));
+                            sb.AppendLine("Uspješno");
+                        }
+                    }
+                }
+            }
+            else sb.AppendLine("Spremanje nije moguće ili nedostaje ime datoteke za spremanje");
+
+            return sb.ToString();
+
+        }
+
+
+        /// <summary>
+        /// Returns sysdocid for invoice number
+        /// </summary>
+        /// <param name="invoiceNumber"></param>
+        /// <returns></returns>
+        private string invoiceSysdocid(string invoiceNumber)
+        {
+            string sysdocid = null;
+            if (!String.IsNullOrEmpty(invoiceNumber))
+            {
+                MOLSoapClient client = getClient();
+                string result = client.salesInvoiceSysdocidForNumber(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie, invoiceNumber);
+                if (!String.IsNullOrEmpty(result))
+                {
+                    XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(result);
+                    XmlNode el = doc.GetElementsByTagName("sysdocid")[0];
+                    sysdocid = el.InnerText;
+                }
+            }
+
+            return sysdocid;
+        }
+
+        /// <summary>
+        /// Fetches invoice data, async
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="sysdocidDelimited"></param>
+        /// <returns></returns>
+        private async Task<string> getSalesInvoiceAsync(string fileName, string sysdocidDelimited)
+        {
+            MOLSoapClient client = getClient();
+            StringBuilder sb = new StringBuilder();
+
+            if (ctx.IsSavingPossible && !String.IsNullOrEmpty(fileName) && !String.IsNullOrEmpty(sysdocidDelimited))
+            {
+                System.IO.FileInfo f = new FileInfo(String.Format(@"{0}\{2}_{1}.xml", ctx.Directory, DateTime.Now.ToString("yyyyMMddHHmm"), fileName));
+                using (StreamWriter sw = f.AppendText())
+                {
+                    var result = await client.salesInvoicesAsync(ctx.AspKey, ctx.CustomerKey, ctx.Password, ctx.Cookie, sysdocidDelimited);
+                    if (result != null && result.Body != null && result.Body.salesInvoicesResult != null)
+                    {
+                        if (result.Body.salesInvoicesResult.Contains("<result>"))
+                        {
+                            XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(result.Body.salesInvoicesResult);
+                            XmlNode el = doc.GetElementsByTagName("result")[0];
+                            sb.AppendLine(el.InnerText);
+                        }
+                        else
+                        {
+                            sw.WriteLine(DataConverter.FormatAsXML(result.Body.salesInvoicesResult, true));
+                            sb.AppendLine("Uspješno");
+                        }
+                    }
+                }
+            }
+            else sb.AppendLine("Greška! Mogući uzroci: Spremanje nije moguće, nedostaje ime datoteke za spremanje ili neodstaje sistemski broj računa");
+
+            return sb.ToString();
+        }
+
+        
+        
+        
         #endregion
 
     }

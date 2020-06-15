@@ -42,5 +42,11 @@ namespace Microline.WS.Client.UI
             CreateSO createSO = new CreateSO();
             NavigationService.Navigate(createSO);
         }
+
+        private void NavigateToAdministration(object sender, RoutedEventArgs e)
+        {
+            Administration admin = new Administration();
+            NavigationService.Navigate(admin);
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace Microline.WS.Core.FixedData
         public static Dictionary<int?, string> GetAvailableCities()
         {
             Dictionary<int?, string> cities = new Dictionary<int?, string>();
-            cities.Add(null, "Prazno");
+            cities.Add(0, "Prazno");
             cities.Add(1, "Zagreb");
             cities.Add(2, "Split");
             cities.Add(3, "Rijeka");

@@ -72,6 +72,11 @@ namespace Microline.WS.Client.UI
             getItemsAsync();
         }
 
+        private void GoHome(object sender, RoutedEventArgs e)
+        {
+            MOLWSClientHome home = new MOLWSClientHome();
+            NavigationService.Navigate(home);
+        }
 
         private async Task getItemsAsync()
         {

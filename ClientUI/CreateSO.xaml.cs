@@ -84,7 +84,11 @@ namespace Microline.WS.Client.UI
             }
         }
 
-
+        private void GoHome(object sender, RoutedEventArgs e)
+        {
+            MOLWSClientHome home = new MOLWSClientHome();
+            NavigationService.Navigate(home);
+        }
 
         private void SubmitSO(object sender, RoutedEventArgs e)
         {
@@ -123,7 +127,9 @@ namespace Microline.WS.Client.UI
 
         private SO prepareSO()
         {
-            SO so = new SO(DeliverImmediatelly.IsChecked ?? false, null, ShipToKey.Text, ShipToName.Text, ShipToAddress1.Text, (int?)ShipToCityId.SelectedValue, ShipToAttention.Text, null,
+            int? cityId = null;
+            if ((int)ShipToCityId.SelectedValue == 0) cityId = (int)ShipToCityId.SelectedValue;
+            SO so = new SO(DeliverImmediatelly.IsChecked ?? false, null, ShipToKey.Text, ShipToName.Text, ShipToAddress1.Text, cityId, ShipToAttention.Text, null,
                 (int)ShipViaFOBKey.SelectedValue, (string)ArTermsList.SelectedValue, PayAfterSold.IsChecked ?? false, null);
 
             List<Item> items = prepareSOLines();
@@ -143,7 +149,6 @@ namespace Microline.WS.Client.UI
             {
                 try
                 {
-                    WSClient client = new WSClient(ctx);
                     var response = await client.PostSOAsync(so);
                     MessageBox.Show(response);
                 }

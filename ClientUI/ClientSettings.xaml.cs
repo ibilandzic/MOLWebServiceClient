@@ -45,5 +45,11 @@ namespace Microline.WS.Client.UI
        
             
         }
+
+        private void GoHome(object sender, RoutedEventArgs e)
+        {
+            MOLWSClientHome home = new MOLWSClientHome();
+            NavigationService.Navigate(home);
+        }
     }
 }

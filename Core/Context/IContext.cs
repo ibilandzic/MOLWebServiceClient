@@ -15,5 +15,6 @@ namespace Microline.WS.Core.Context
         string Directory { get;}
         string Cookie { get;}
         bool IsSavingPossible { get; }
+        bool IsMandatoryDataSet { get; }
     }
 }

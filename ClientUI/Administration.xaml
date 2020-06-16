@@ -5,31 +5,35 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Microline.WS.Client.UI"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="500"
+      d:DesignHeight="600" WindowHeight="600" d:DesignWidth="500" WindowWidth="500"
       Title="Administration">
 
     <Grid HorizontalAlignment="Left" Width="500" Height="600">
         <GroupBox Header="Administracija narudžbe kupca" HorizontalAlignment="Left" Height="155" Margin="10,23,0,0" VerticalAlignment="Top" Width="321">
             <Grid HorizontalAlignment="Left" Height="123" Margin="10,10,0,0" VerticalAlignment="Top" Width="300">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="43*"/>
+                    <ColumnDefinition Width="57*"/>
+                </Grid.ColumnDefinitions>
                 <Label Content="Broj narudžbe " HorizontalAlignment="Left" Margin="0,14,0,0" VerticalAlignment="Top" Height="30"/>
-                <TextBox HorizontalAlignment="Left" Height="30" Margin="95,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Name="SONumber"/>
-                <Button Content="Dohvati NK" HorizontalAlignment="Left" Margin="0,83,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="GetSO"/>
-                <Button Content="Isporuči NK" HorizontalAlignment="Left" Margin="95,83,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="DeliverSO"/>
-                <Button Content="Obriši NK" HorizontalAlignment="Left" Margin="190,83,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="DeleteSO"/>
+                <TextBox HorizontalAlignment="Left" Height="30" Margin="95,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Name="SONumber" Grid.ColumnSpan="2"/>
+                <Button Content="Dohvati NK" HorizontalAlignment="Left" Margin="0,83,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="GetSO" BorderBrush="{x:Null}"/>
+                <Button Content="Isporuči NK" HorizontalAlignment="Left" Margin="95,83,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="DeliverSO" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
+                <Button Content="Obriši NK" HorizontalAlignment="Left" Margin="60.93,83,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="DeleteSO" BorderBrush="{x:Null}" Grid.Column="1"/>
                 <CheckBox Content="Svi podaci?" HorizontalAlignment="Left" Margin="0,56,0,0" VerticalAlignment="Top" Name="soExtraData" Height="22"/>
                 <Label Content="Broj narudžbe " HorizontalAlignment="Left" Margin="0,14,0,0" VerticalAlignment="Top" Height="30"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Administracija računa" HorizontalAlignment="Left" Height="143" Margin="10,191,0,0" VerticalAlignment="Top" Width="321">
             <Grid HorizontalAlignment="Left" Height="110" Margin="0,10,0,0" VerticalAlignment="Top" Width="300">
-                <Label Content="Broj računa" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="30"/>
+                <Label Content="Broj računa" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Height="30"/>
                 <TextBox HorizontalAlignment="Left" Height="30" Margin="102,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Name="SINumber"/>
-                <Button Content="Dohvati račun" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="GetSI"/>
+                <Button Content="Dohvati račun" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="90" Height="30" Click="GetSI" BorderBrush="{x:Null}"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Financijski podaci" HorizontalAlignment="Left" Height="85" Margin="10,355,0,0" VerticalAlignment="Top" Width="321">
             <Grid HorizontalAlignment="Left" Height="71" Margin="10,0,-1,0" VerticalAlignment="Top" Width="300">
-                <Button Content="Dohvat kartice kupca" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" Width="141" Height="30" Click="GetStatement"/>
+                <Button Content="Dohvat kartice kupca" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" Width="141" Height="30" Click="GetStatement" BorderBrush="{x:Null}"/>
             </Grid>
         </GroupBox>
         <Button HorizontalAlignment="Left" Margin="455,10,0,0" VerticalAlignment="Top" Width="40" Background="{x:Null}" BorderThickness="0,0,0,0" Click="GoHome">

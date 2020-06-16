@@ -81,7 +81,7 @@ namespace Microline.WS.Client.UI
                 }
                 catch (Exception ex)
                 {
-                    ExceptionHandler.Log(ex);
+                    ExceptionHandler.Log(ex, ctx.Directory);
                     MessageBox.Show("Došlo je do greške");
                 }
 
@@ -106,7 +106,7 @@ namespace Microline.WS.Client.UI
                 }
                 catch (Exception ex)
                 {
-                    ExceptionHandler.Log(ex);
+                    ExceptionHandler.Log(ex, ctx.Directory);
                     MessageBox.Show("Došlo je do greške");
                 }
 
@@ -130,7 +130,7 @@ namespace Microline.WS.Client.UI
                 }
                 catch (Exception ex)
                 {
-                    ExceptionHandler.Log(ex);
+                    ExceptionHandler.Log(ex, ctx.Directory);
                     MessageBox.Show("Došlo je do greške");
                 }
 
@@ -154,7 +154,7 @@ namespace Microline.WS.Client.UI
                 }
                 catch (Exception ex)
                 {
-                    ExceptionHandler.Log(ex);
+                    ExceptionHandler.Log(ex, ctx.Directory);
                     MessageBox.Show("Došlo je do greške");
                 }
 
@@ -175,7 +175,7 @@ namespace Microline.WS.Client.UI
             }
             catch (Exception ex)
             {
-                ExceptionHandler.Log(ex);
+                ExceptionHandler.Log(ex, ctx.Directory);
                 MessageBox.Show("Došlo je do greške");
             }
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microline.WS.Core.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,16 @@ namespace Microline.WS.Client.UI
     /// </summary>
     public partial class MOLWSClientHome : Page
     {
+        private IContext ctx;
         public MOLWSClientHome()
         {
             InitializeComponent();
+            ctx = new WSContext(Properties.Settings.Default.AspKey, Properties.Settings.Default.CustomerKey, Properties.Settings.Default.Password, Properties.Settings.Default.ServiceEndpointAddress,
+                Properties.Settings.Default.StorageDirectory, Properties.Settings.Default.Cookie);
+            if (!ctx.IsMandatoryDataSet)
+            {
+                MessageBox.Show("Prvo unesite postavke da biste mogli nastaviti");  
+            }
         }
 
         private void NavigateToSettings(object sender, RoutedEventArgs e)

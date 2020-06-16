@@ -38,12 +38,35 @@ namespace Microline.WS.Client.UI
                 }
                 catch(Exception ex)
                 {
-                    ExceptionHandler.Log(ex);
+                    ExceptionHandler.Log(ex, DirectoryInput.Text);
                     MessageBox.Show("Došlo je do greške");
                 }
             }
-       
-            
+            else
+            {
+                if (String.IsNullOrEmpty(AspKeyInput.Text)) AspKeyInput.Background = Brushes.LightSalmon;
+                if (String.IsNullOrEmpty(CustmerKeyInput.Text)) CustmerKeyInput.Background = Brushes.LightSalmon;
+                if (String.IsNullOrEmpty(CustomerPasswordInput.Text)) CustomerPasswordInput.Background = Brushes.LightSalmon;
+                if (String.IsNullOrEmpty(EndpointInput.Text)) EndpointInput.Background = Brushes.LightSalmon;
+                if (String.IsNullOrEmpty(DirectoryInput.Text)) DirectoryInput.Background = Brushes.LightSalmon;
+
+            }
+
+
+        }
+
+        private void CheckValue(object sender, TextChangedEventArgs e)
+        {
+            bool checkValue = false;
+            TextBox senderField = sender as TextBox;
+            if (String.IsNullOrEmpty(senderField.Text))
+            {
+                senderField.Background = Brushes.LightSalmon;
+                checkValue = true;
+            }
+            else senderField.Background = Brushes.White;
+
+            if (checkValue) MessageBox.Show("Provjerite vrijednosti u poljima");
         }
 
         private void GoHome(object sender, RoutedEventArgs e)

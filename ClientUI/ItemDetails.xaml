@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Microline.WS.Client.UI"
       mc:Ignorable="d"
       Title="ItemDetails"
-      WindowTitle="Dohvat podataka o artiklima" Height="458.649" Width="500.167">
+      WindowTitle="Dohvat podataka o artiklima" Height="458.649" Width="500.167" WindowHeight="459" WindowWidth="501">
 
     <Grid Margin="0,0,10,0">
         <Grid.ColumnDefinitions>
@@ -29,10 +29,10 @@
 
         <DockPanel HorizontalAlignment="Left" Height="40" LastChildFill="False" VerticalAlignment="Top" Width="300" Margin="23,161,0,0" RenderTransformOrigin="0.502,1.427" Grid.ColumnSpan="2">
             <Label Content="Količina" Height="30" VerticalAlignment="Top" Width="100" />
-            <TextBox Height="30" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Name="ItemQuatity" MaxLength="5" />
+            <TextBox Height="30" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Name="ItemQuatity" MaxLength="5"/>
 
         </DockPanel>
-        <Button Content="Dohvati artikle" HorizontalAlignment="Left" Margin="23,311,0,0" VerticalAlignment="Top" Width="156" Height="42" Click="GetItems" Grid.ColumnSpan="2"/>
+        <Button Content="Dohvati artikle" HorizontalAlignment="Left" Margin="23,311,0,0" VerticalAlignment="Top" Width="156" Height="42" Click="GetItems" Grid.ColumnSpan="2" BorderBrush="{x:Null}"/>
         <DockPanel HorizontalAlignment="Left" Height="40" LastChildFill="False" VerticalAlignment="Top" Width="300" Margin="23,206,0,0" RenderTransformOrigin="0.502,1.427" Grid.ColumnSpan="2">
             <Label Content="Šifra artikla" Height="30" VerticalAlignment="Top" Width="100" />
             <TextBox Height="30" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" x:Name="ItemKey"/>

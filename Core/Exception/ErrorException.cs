@@ -10,12 +10,10 @@ namespace Microline.WS.Core
     {
         public ErrorException(string message) : base(message)
         {
-            ExceptionHandler.Log(this);
         }
 
         public ErrorException(string message, Exception innerException) : base(message, innerException)
         {
-            ExceptionHandler.Log(this);
         }
 
         

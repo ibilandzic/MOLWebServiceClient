@@ -5,15 +5,20 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Microline.WS.Client.UI"
       mc:Ignorable="d"
-      Title="MOLWSClient-Home" Width="272.187" WindowTitle="Glavni meni" Height="164.613">
+      Title="MOLWSClient-Home" Width="400" WindowTitle="Glavni meni" Height="300" WindowHeight="300" WindowWidth="400">
 
-    <Grid Margin="10,0,0,-8" Height="173" VerticalAlignment="Top">
-        <StackPanel Margin="10,10,25,20" Orientation="Vertical">
-            <Button Content="Postavke" Height="33" VerticalAlignment="Top" Width="173" Click="NavigateToSettings" />
-            <Button Content="Dohvati artikle" Height="33" VerticalAlignment="Top" Width="173" Click="NavigateToItemDetails"/>
-            <Button Content="Predaj NK" Height="33" VerticalAlignment="Top" Width="173" Click="NavigateToPostSO"/>
-            <Button Content="Administracija" Height="33" VerticalAlignment="Top" Width="173" Click="NavigateToAdministration"/>
+    <Grid Height="290" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="122*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="0,49,0,109" Orientation="Vertical" Grid.ColumnSpan="2">
+            <Button Content="Postavke" Height="33" VerticalAlignment="Top" Width="173" Click="NavigateToSettings" BorderBrush="{x:Null}" />
+            <Button Content="Dohvati artikle" Height="33" VerticalAlignment="Top" Width="173" Click="NavigateToItemDetails" Background="#FFC7C4C4" BorderBrush="{x:Null}"/>
+            <Button Content="Predaj NK" Height="33" VerticalAlignment="Top" Width="173" Click="NavigateToPostSO" BorderBrush="{x:Null}"/>
+            <Button Content="Administracija" Height="33" VerticalAlignment="Top" Width="173" Click="NavigateToAdministration" Margin="91,0" Background="#FFC7C4C4" BorderBrush="{x:Null}"/>
         </StackPanel>
+        <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Dobrodošli u aplikaciju MOL Web Service client" VerticalAlignment="Top" Width="390" Grid.ColumnSpan="2" FontWeight="Bold" TextAlignment="Center"/>
 
     </Grid>
 </Page>

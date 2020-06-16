@@ -10,11 +10,11 @@ namespace Microline.WS.Core
     public class ExceptionHandler
     {
 
-        public static void Log(Exception ex)
+        public static void Log(Exception ex, string directoryName)
         {
-            if (Directory.Exists(@"C:\Temp"))
+            if (!String.IsNullOrEmpty(directoryName) && Directory.Exists(directoryName))
             {
-                System.IO.FileInfo f = new FileInfo(String.Format(@"C:\Temp\MOLWsClient_errors_{0}.txt", DateTime.Now.ToString("ddMMyyyy")));
+                System.IO.FileInfo f = new FileInfo(String.Format(@"{1}\MOLWsClient_errors_{0}.txt", DateTime.Now.ToString("ddMMyyyy"), directoryName));
                 using (StreamWriter sw = f.AppendText())
                 {
                     sw.WriteLine(string.Format("{0}: {1}", DateTime.Now.ToString("ddMMyyyy HH:mm:ss"), ex.Message));
@@ -30,7 +30,7 @@ namespace Microline.WS.Core
         }
 
 
-        public static void Log(string message)
+        /*public static void Log(string message)
         {
             if (Directory.Exists(@"C:\Temp"))
             {
@@ -40,7 +40,7 @@ namespace Microline.WS.Core
                     sw.WriteLine(string.Format("{0}: {1}", DateTime.Now.ToString("ddMMyyyy HH:mm:ss"), message));
                 }
             }
-        }
+        }*/
 
     }
 }

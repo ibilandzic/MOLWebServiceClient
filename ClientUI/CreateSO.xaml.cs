@@ -79,7 +79,7 @@ namespace Microline.WS.Client.UI
             }
             catch (Exception ex)
             {
-                ExceptionHandler.Log(ex);
+                ExceptionHandler.Log(ex, ctx.Directory);
                 MessageBox.Show("Greška! " + ex.Message);
             }
         }
@@ -103,7 +103,7 @@ namespace Microline.WS.Client.UI
             }
             catch(Exception ex)
             {
-                ExceptionHandler.Log(ex);
+                ExceptionHandler.Log(ex, ctx.Directory);
                 MessageBox.Show("Došlo je do greške");
             }
         }
@@ -128,7 +128,7 @@ namespace Microline.WS.Client.UI
         private SO prepareSO()
         {
             int? cityId = null;
-            if ((int)ShipToCityId.SelectedValue == 0) cityId = (int)ShipToCityId.SelectedValue;
+            if ((int)ShipToCityId.SelectedValue != 0) cityId = (int)ShipToCityId.SelectedValue;
             SO so = new SO(DeliverImmediatelly.IsChecked ?? false, null, ShipToKey.Text, ShipToName.Text, ShipToAddress1.Text, cityId, ShipToAttention.Text, null,
                 (int)ShipViaFOBKey.SelectedValue, (string)ArTermsList.SelectedValue, PayAfterSold.IsChecked ?? false, null);
 
@@ -154,7 +154,7 @@ namespace Microline.WS.Client.UI
                 }
                 catch (Exception ex)
                 {
-                    ExceptionHandler.Log(ex);
+                    ExceptionHandler.Log(ex, ctx.Directory);
                     MessageBox.Show("Došlo je do greške");
                 }
             }

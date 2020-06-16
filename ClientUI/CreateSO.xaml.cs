@@ -95,11 +95,16 @@ namespace Microline.WS.Client.UI
             try
             {
                 SO so = prepareSO();
-                if (so != null)
+                if (so != null && ctx.IsMandatoryDataSet && !String.IsNullOrEmpty(ctx.Cookie))
                 {
                     postSOAsync(so);
                 }
-                else MessageBox.Show("NK nije instancirana");
+                else {
+
+                    if (so == null) MessageBox.Show("NK nije instancirana");
+                    if (String.IsNullOrEmpty(ctx.Cookie)) MessageBox.Show("Cookie nije postavljen.");
+                    
+                }
             }
             catch(Exception ex)
             {

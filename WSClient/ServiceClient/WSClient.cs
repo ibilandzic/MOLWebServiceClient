@@ -401,7 +401,7 @@ namespace Microline.WS.Connector.Service.Client
                     XmlDocument doc = Microline.WS.XMLModel.Util.CreateXmlDocumentFromString(modifiedResult);
                     if (doc.SelectSingleNode("root/result") != null) sb.AppendLine("Rezultat: " + doc.SelectSingleNode("root/result").InnerText);
                     if (doc.SelectSingleNode("root/documentNumber") != null) sb.AppendLine("Broj narudžbe: " + doc.SelectSingleNode("root/documentNumber").InnerText);
-                    if (doc.SelectSingleNode("root/soPK") != null) sb.AppendLine("PK: " + doc.SelectSingleNode("root/soPK").InnerText);
+
                 }
                 else sb.Append("Došlo je do greške, nema odgovora");
 

@@ -61,7 +61,7 @@ namespace Microline.WS.Client.UI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("39983830859dJFaogrSxpgIcfvfy1T")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Cookie {
             get {
                 return ((string)(this["Cookie"]));

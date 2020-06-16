@@ -12,7 +12,7 @@
       <Value Profile="(Default)">bestpc</Value>
     </Setting>
     <Setting Name="Cookie" Type="System.String" Scope="User">
-      <Value Profile="(Default)">39983830859dJFaogrSxpgIcfvfy1T</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ServiceEndpointAddress" Type="(Web Service URL)" Scope="User">
       <Value Profile="(Default)">http://www.microline.hr/WebServices/MOL.asmx</Value>

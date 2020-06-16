@@ -102,8 +102,9 @@ namespace Microline.WS.Client.UI
                 else {
 
                     if (so == null) MessageBox.Show("NK nije instancirana");
-                    if (String.IsNullOrEmpty(ctx.Cookie)) MessageBox.Show("Cookie nije postavljen.");
-                    
+                    else if (String.IsNullOrEmpty(ctx.Cookie)) MessageBox.Show("Cookie nije postavljen.");
+                    else MessageBox.Show("Provjerite podatke za spajanje");
+
                 }
             }
             catch(Exception ex)

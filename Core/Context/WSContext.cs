@@ -81,7 +81,7 @@ namespace Microline.WS.Core.Context
         {
             get
             {
-                return !String.IsNullOrEmpty(aspKey) && !String.IsNullOrEmpty(customerKey) && !String.IsNullOrEmpty(password) && !String.IsNullOrEmpty(serviceUrl);
+                return !String.IsNullOrEmpty(aspKey) && !String.IsNullOrEmpty(customerKey) && !String.IsNullOrEmpty(password) && !String.IsNullOrEmpty(serviceUrl) && !String.IsNullOrEmpty(cookie);
             }
         }
     }
